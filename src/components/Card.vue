@@ -1,31 +1,58 @@
 <template>
-  <div>
-    <h2>hello world</h2>
-    <!-- <h3 v-for="(item, index) in imageList" :key="index">
-      <img :src="item.img" alt="img" />
-    </h3> -->
 
-    <h3 v-for="(data, index) in dataList" :key="index">
-      <p>{{ data.name }}</p>
-    </h3>
+  <div  class="col">
+    <div v-if="item" class="card shadow-sm">
+      <img
+        :src="item.imageUrl"
+        class="bd-placeholder-img card-img-top"
+        width="100%"
+        height="250"
+        role="img"
+      />
+      <p  class="ps-3 pt-1 lead">
+       # {{item.id}}
+      </p>
+
+      <div>
+        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <h2 class="ps-3 pt-1">
+            {{ item.location }}
+          </h2>
+        </text>
+        <div class="card-body">
+          <h5 class="card-text">
+            Weather Forecast : <strong> {{ item.current }} °C </strong>
+          </h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+               View
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+        <h1>NO ITEM</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import { getMyApi, getImage } from "../utils/api";
-import { ref } from "vue";
 export default {
   name: "Card",
+  props: {
+    item: {
+      type: Array,
+    },
+  },
 
   setup() {
-    let imageList = ref([]);
-    let dataList = ref([]);
-    getMyApi().then((res) => (dataList.value = res));
-    getImage().then((res) => (imageList.value = res));
-    return {
-      dataList,
-      imageList,
-    };
+    return {};
   },
 };
 </script>
