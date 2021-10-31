@@ -158,6 +158,7 @@ export default {
       cardObj.id = uniqID;
 
       // aynı card'ı tekrar dataArray'e push etmemek için kontrol ediyoruz
+      
       dataArray.value.length > 0
         ? dataArray.value.some((data) => data.location === cardObj.location)
           ? triggerToast()
