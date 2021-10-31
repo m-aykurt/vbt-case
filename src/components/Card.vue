@@ -25,16 +25,6 @@
           <h5 class="card-text">
             Weather Forecast : <strong> {{ item.current }} °C </strong>
           </h5>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">
-                Edit
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -42,7 +32,7 @@
 </template>
 
 <script>
-import {ref} from "vue"
+import { ref } from "vue";
 export default {
   name: "Card",
   props: {

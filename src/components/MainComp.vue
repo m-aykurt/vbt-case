@@ -4,7 +4,7 @@
       <section class="py-1 text-center container">
         <div class="row py-lg-2">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <button @click="translateFunc">Translate</button>
+            <button class="btn btn-dark" @click="translateFunc">Translate to Turkish</button>
             <h1 class="fw-light">{{ cities }}</h1>
             <p class="lead text-muted">{{ weatherApi }}</p>
             <!-- Translate -->
@@ -17,7 +17,7 @@
                 @change="dropDownClick"
               >
                 <option
-                class="text-light"
+                  class="text-light"
                   v-for="(item, index) in capitals[0]"
                   :key="index"
                   :value="item.capital"
@@ -40,15 +40,13 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
               <!--CardComp'a data ları props olarak gönderiyoruz -->
               <div v-if="dataArray.length == 0">
-                <div style="minWidth:1280px;" class="card text-center">
+                <div class="warning-card card text-center">
                   <div class="card-header">Warning</div>
                   <div class="card-body">
                     <h5 class="card-title">No City to Display</h5>
-                    <p class="card-text">
-                      Use the button above to choose
-                    </p>
+                    <p class="card-text">Use the button above to choose</p>
                     <router-link to="/" href="#" class="btn btn-secondary">
-                        To Home
+                      To Home
                     </router-link>
                   </div>
                 </div>
@@ -143,7 +141,11 @@ export default {
           (cardObj.location = res.data.location.name),
             (cardObj.current = res.data.current.temp_c);
         })
-        .catch((err) => console.log(err));
+        .catch(() => {
+          cardObj.location = "Not Found";
+          cardObj.current = "Not Found";
+          console.log("Data Not Found");
+        });
       await getImage(query.value)
         .then((res) => (cardObj.imageUrl = res.urls.regular))
         .catch(() => {
@@ -204,6 +206,12 @@ export default {
 .toast-leave-active {
   transition: all 0.3s ease;
 }
+.g-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .empty-card {
   background: red;
   border: 5px solid blue;
