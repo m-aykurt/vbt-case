@@ -1,7 +1,11 @@
 <template>
-
-  <div  class="col">
-    <div v-if="item" class="card shadow-sm">
+  <div
+    @mouseover="opacity = true"
+    @mouseleave="opacity = false"
+    :class="opacity ? 'opacity' : null"
+    class="col"
+  >
+    <div class="card shadow-sm">
       <img
         :src="item.imageUrl"
         class="bd-placeholder-img card-img-top"
@@ -9,9 +13,7 @@
         height="250"
         role="img"
       />
-      <p  class="ps-3 pt-1 lead">
-       # {{item.id}}
-      </p>
+      <p class="ps-3 pt-1 lead"># {{ item.id }}</p>
 
       <div>
         <text x="50%" y="50%" fill="#eceeef" dy=".3em">
@@ -25,9 +27,9 @@
           </h5>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">
-               View
-              </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  View
+                </button>
               <button type="button" class="btn btn-sm btn-outline-secondary">
                 Edit
               </button>
@@ -36,26 +38,31 @@
         </div>
       </div>
     </div>
-    <div v-else>
-        <h1>NO ITEM</h1>
-    </div>
   </div>
 </template>
 
 <script>
+import {ref} from "vue"
 export default {
   name: "Card",
   props: {
     item: {
-      type: Array,
+      type: Object,
     },
   },
 
   setup() {
-    return {};
+    let opacity = ref(false);
+    return {
+      opacity,
+    };
   },
 };
 </script>
 
 <style scoped>
+.opacity {
+  opacity: 0.8;
+  transition: all 0.8s ease;
+}
 </style>
