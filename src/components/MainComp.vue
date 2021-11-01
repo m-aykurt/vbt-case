@@ -207,6 +207,7 @@ export default {
 .toast-leave-active {
   transition: all 0.3s ease;
 }
+
 .g-2 {
   display: flex;
   align-items: center;
