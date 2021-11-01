@@ -1,3 +1,6 @@
+![vbt-case](https://user-images.githubusercontent.com/79319296/139642414-f7f4af62-083b-4298-b947-023d42ae2fc9.gif)
+
+
 # vbt-task
 
 ## Project setup
