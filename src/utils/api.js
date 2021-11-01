@@ -6,13 +6,13 @@ export const getInfo = async (query) => {
 
   return axios.get(url).then((res) => res);
 };
-
 export const getImage = async (query) => {
   let ACCESS_KEY = "YlLRTaXc39M8ujyIgk9fuc8uO1Sn2AWin0HfQv61QCI";
   let url = `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=${ACCESS_KEY}`;
   return axios.get(url).then((res) => res.data.results[0]);
 };
 
+// uniqID
 export const uniqIDgenerator = () => {
   const regEx = /^[1-9]{1}[0-9]{3}$/;
   let id = Math.floor(1000 + Math.random() * 9000);
@@ -22,13 +22,12 @@ export const uniqIDgenerator = () => {
     uniqIDgenerator();
   }
 };
-
+// capitals
 export const capitalsApi = async () => {
   return axios
     .get("https://countriesnow.space/api/v0.1/countries/capital")
     .then(res=>res.data);
 };
-
 
 
 // translate

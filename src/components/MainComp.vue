@@ -4,10 +4,14 @@
       <section class="py-1 text-center container">
         <div class="row py-lg-2">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <button class="btn btn-dark" @click="translateFunc">Translate to Turkish</button>
+            <!-- Translate -->
+            <button class="btn btn-dark" @click="translateFunc">
+              Translate to Turkish
+            </button>
+             <!-- End Translate -->
+             <!--SELECT CITY-->
             <h1 class="fw-light">{{ cities }}</h1>
             <p class="lead text-muted">{{ weatherApi }}</p>
-            <!-- Translate -->
             <div class="container mx-auto">
               <p>{{ selectCity }}</p>
 
@@ -26,10 +30,13 @@
                 </option>
               </select>
             </div>
+             <!--END SELECT CITY-->
+
             <!-- Transition -->
             <transition name="toast">
               <Toast v-if="showToast" />
             </transition>
+             <!-- Transition -->
           </div>
         </div>
       </section>
@@ -92,6 +99,7 @@ export default {
     Card,
     Toast,
   },
+  // composition api
   setup() {
     let dataArray = ref([]);
     let cardObj = {
@@ -106,7 +114,7 @@ export default {
     let uniqID = null;
     let capitals = ref([]);
     let query = ref("");
-
+    // lifecyle 
     onMounted(() => {
       capitalsApi().then((response) => capitals.value.push(response.data));
     });
@@ -116,7 +124,6 @@ export default {
     const triggerToast = () => {
       showToast.value = true;
       setTimeout(() => (showToast.value = false), 3000);
-      console.log("trigger");
     };
 
     // translate
@@ -132,7 +139,7 @@ export default {
         selectCity.value = res.data.text[0];
       });
     };
-
+    // iki farklı api kullanımı
     let dropDownClick = async () => {
       cardObj = {};
       // api'lerden gelen bilgileri cardObj'e gönderip dataArray'a push ediyoruz
@@ -158,7 +165,7 @@ export default {
       cardObj.id = uniqID;
 
       // aynı card'ı tekrar dataArray'e push etmemek için kontrol ediyoruz
-      
+
       dataArray.value.length > 0
         ? dataArray.value.some((data) => data.location === cardObj.location)
           ? triggerToast()
@@ -214,8 +221,5 @@ export default {
   justify-content: center;
 }
 
-.empty-card {
-  background: red;
-  border: 5px solid blue;
-}
+
 </style>
